@@ -93,6 +93,7 @@ app.get('/api/surveys', (req, res) => {
                     };
                     response.push(selectedSurvey);
                 }
+                return response;
             });
 
             return res.status(200).send(response);
@@ -136,6 +137,7 @@ app.get('/api/tests', (req, res) => {
                     };
                     response.push(selectedTest);
                 }
+                return response;
             });
 
             return res.status(200).send(response);
@@ -165,15 +167,13 @@ app.get('/api/test/:id', (req, res) => {
 ///////////////////////////// PUT METHODS /////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-// Update (PUT)
-
+// Update (PUT) - NOT NECESSARY FOR MVP
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// DELETE METHODS //////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-// Delete (DELETE)
-
+// Delete (DELETE) - NOT NECESSARY FOR MVP
 
 // Export API to Firebase Cloud Functions
 exports.app = functions.https.onRequest(app);
