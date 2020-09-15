@@ -14,21 +14,20 @@ const db = admin.firestore();
 const cors = require('cors');
 app.use(cors({origin:true}));
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// https://indepth.dev/building-an-api-with-firebase/
 
-// https://firebase.google.com/docs/firestore/use-rest-api
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////// NON-API ROUTES //////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-
-// Routes
 app.get('/hello-world', (req, res) => {
     return res.status(200).send('Hello world');
 })
+
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////// POST METHODS ////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 // Create survey submission (POST)
 app.post('/api/survey/create', (req, res) => {
@@ -74,6 +73,36 @@ app.post('/api/test/create', (req, res) => {
     })();
 })
 
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////// GET METHODS /////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+// Read all survey submissions (GET)
+app.get('/api/surveys', (req, res) => {
+    (async () => {
+        try {
+            let query = db.collection('surveys');
+            let response = [];
+            await query.get().then(querySnapshot => {
+                let docs = querySnapshot.docs;
+                for (let doc of docs) {
+                    const selectedSurvey = {
+                        id: doc.id,
+                        user_id: doc.data().user_id,
+                        timestamp: doc.data().timestamp
+                    };
+                    response.push(selectedSurvey);
+                }
+            });
+
+            return res.status(200).send(response);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error);
+        }
+    })();
+})
+
 // Read specific survey submission (GET)
 app.get('/api/survey/:id', (req, res) => {
     (async () => {
@@ -81,6 +110,34 @@ app.get('/api/survey/:id', (req, res) => {
             const document = db.collection('surveys').doc(req.params.id);
             let item = await document.get();
             let response = item.data();
+            return res.status(200).send(response);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error);
+        }
+    })();
+})
+
+// Read all test results (GET)
+app.get('/api/tests', (req, res) => {
+    (async () => {
+        try {
+            let query = db.collection('tests');
+            let response = [];
+            await query.get().then(querySnapshot => {
+                let docs = querySnapshot.docs;
+                for (let doc of docs) {
+                    const selectedTest = {
+                        id: doc.id,
+                        user_id: doc.data().user_id,
+                        timestamp: doc.data().timestamp,
+                        test_timestamp: doc.data().test_timestamp,
+                        test_positive: doc.data().test_positive
+                    };
+                    response.push(selectedTest);
+                }
+            });
+
             return res.status(200).send(response);
         } catch (error) {
             console.log(error);
@@ -104,8 +161,16 @@ app.get('/api/test/:id', (req, res) => {
     })();
 })
 
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////// PUT METHODS /////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
 // Update (PUT)
 
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////// DELETE METHODS //////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 // Delete (DELETE)
 
