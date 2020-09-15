@@ -1,51 +1,55 @@
-import React, {Component, Alert} from 'react';
-import {Button} from 'react-native-elements';
+import React, {Component} from 'react';
+import {Redirect} from 'react-router-native';
 import {
   GoogleSignin,
   GoogleSigninButton,
   statusCodes,
 } from 'react-native-google-signin';
-import auth from '@react-native-firebase/auth';
 
 export class LoginComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {userInfo: '', isSigninInProgress: false, loggedIn: false};
+    this.state = {userInfo: '', isSigninInProgress: false, isLoggedIn: false};
   }
-
-  onSignInSuccess = () => {
-    console.log(this.state.userInfo);
-    this.setState({isSigninInProgress: true});
-  };
 
   signIn = async () => {
     try {
-      // const userInfo = await GoogleSignin.signIn();
-      const {accessToken, idToken} = await GoogleSignin.signIn();
-      // this.setState({userInfo: userInfo});
-      const credential = auth.GoogleAuthProvider.credential(
-        idToken,
-        accessToken,
-      );
-      await auth().signInWithCredential(credential);
+      this.setState({isSigninInProgress: true});
       console.log('Sign in in progress.');
-      // this.onSignInSuccess();
+      const userInfo = await GoogleSignin.signIn();
+      this.setState({userInfo: userInfo});
+      this.onSignInSuccess();
     } catch (error) {
-      console.log(error);
+      this.setState({isSigninInProgress: false});
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
-        alert('Cancel');
+        console.log('Login flow canceled.');
       } else if (error.code === statusCodes.IN_PROGRESS) {
         // operation (e.g. sign in) is in progress already
-        alert('Sign-in in progress');
+        console.log('Sign-in in progress.');
       } else {
         // some other error happened
-        alert(error);
+        console.log(error);
       }
     }
   };
 
+  onSignInSuccess = () => {
+    this.setState({isSigninInProgress: false, isLoggedIn: true});
+    return (
+      <Redirect
+        to={{
+          pathname: '/survey',
+          state: {userInfo: this.state.userInfo},
+        }}
+      />
+    );
+  };
+
   render() {
+    if (this.state.isLoggedIn) {
+      return <Redirect to="/survey" />;
+    }
     GoogleSignin.configure({
       webClientId:
         '594841799387-r9jrfsutki0ddoke9pp4cgs0bdcc3qef.apps.googleusercontent.com',
