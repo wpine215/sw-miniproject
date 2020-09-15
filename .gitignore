@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Google private key
+firebase/functions/permissions.json
+*permissions.json
