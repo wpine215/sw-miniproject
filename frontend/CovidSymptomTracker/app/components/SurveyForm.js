@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, Button, View} from 'react-native';
-import {CheckBox, Icon} from 'react-native-elements';
+import {Redirect} from 'react-router-native';
+import {CheckBox} from 'react-native-elements';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -17,18 +18,33 @@ export class SurveyForm extends Component {
 
     axios
       .post(
-        'https://us-central1-covid-miniproject-22326.cloudfunctions.net/app/api/survey/create',
+        'https://us-central1-covid-miniproject-22326.cloudfunctions.net/app/api/surveys/create',
         {
-          symptoms,
           user_id: id,
           timestamp: Date.now(),
+          symptoms,
         },
       )
       .then(function (response) {
-        console.log(response);
+        console.log(response.status);
       })
       .catch(function (error) {
-        console.log(error);
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
+        }
+        console.log(error.config);
       });
   };
 
