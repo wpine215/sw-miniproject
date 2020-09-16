@@ -14,7 +14,12 @@ const db = admin.firestore();
 const cors = require('cors');
 app.use(cors({origin:true}));
 
+// npm run serve --only functions
+// firebase deploy
+
 // https://indepth.dev/building-an-api-with-firebase/
+// https://firebase.google.com/docs/firestore/use-rest-api
+// https://firebase.google.com/docs/reference/rest/auth/#section-sign-in-with-oauth-credential
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// NON-API ROUTES //////////////////////////////////
