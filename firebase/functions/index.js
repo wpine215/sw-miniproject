@@ -35,19 +35,22 @@ app.get('/hello-world', (req, res) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 // Create survey submission (POST)
-app.post('/api/survey/create', (req, res) => {
+app.post('/api/surveys/create', (req, res) => {
     (async () => {
         try {
-            await db.collection('surveys').doc('/' + req.body.id + '/')
-            .create({
+            // await db.collection('surveys').doc('/' + req.body.id + '/')
+            // .create({
+            await db.collection('surveys')
+            .add({
                 user_id: req.body.user_id,
                 timestamp: req.body.timestamp,
-                has_fever: req.body.has_fever,
-                has_cough: req.body.has_cough,
-                has_diff_b: req.body.has_diff_b,
-                has_fatigue: req.body.has_fatigue,
-                has_s_loss: req.body.has_s_loss,
-                has_positive_contact: req.body.has_positive_contact
+                // has_fever: req.body.has_fever,
+                // has_cough: req.body.has_cough,
+                // has_diff_b: req.body.has_diff_b,
+                // has_fatigue: req.body.has_fatigue,
+                // has_s_loss: req.body.has_s_loss,
+                // has_positive_contact: req.body.has_positive_contact
+                symptoms: req.body.symptoms
             })
 
             return res.status(200).send();
@@ -59,7 +62,7 @@ app.post('/api/survey/create', (req, res) => {
 })
 
 // Create test result submission (POST)
-app.post('/api/test/create', (req, res) => {
+app.post('/api/tests/create', (req, res) => {
     (async () => {
         try {
             await db.collection('tests').doc('/' + req.body.id + '/')
@@ -110,7 +113,7 @@ app.get('/api/surveys', (req, res) => {
 })
 
 // Read specific survey submission (GET)
-app.get('/api/survey/:id', (req, res) => {
+app.get('/api/surveys/:id', (req, res) => {
     (async () => {
         try {
             const document = db.collection('surveys').doc(req.params.id);
@@ -154,7 +157,7 @@ app.get('/api/tests', (req, res) => {
 })
 
 // Read specific test result (GET)
-app.get('/api/test/:id', (req, res) => {
+app.get('/api/tests/:id', (req, res) => {
     (async () => {
         try {
             const document = db.collection('tests').doc(req.params.id);
