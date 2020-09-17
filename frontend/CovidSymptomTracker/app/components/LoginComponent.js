@@ -36,6 +36,7 @@ export class LoginComponent extends Component {
 
   onSignInSuccess = () => {
     this.setState({isSigninInProgress: false, isLoggedIn: true});
+    this.props.returnStatus(this.state.isLoggedIn);
   };
 
   render() {
@@ -48,13 +49,12 @@ export class LoginComponent extends Component {
       return (
         <Redirect
           to={{
-            pathname: '/survey',
+            pathname: '/',
             state: {
               userFirstName: this.state.userInfo.user.givenName,
               userEmail: this.state.userInfo.user.email,
               userToken: this.state.userInfo.idToken,
               userID: this.state.userInfo.user.id,
-              userPhoto: this.state.userInfo.user.photo,
             },
           }}
         />

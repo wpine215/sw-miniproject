@@ -50,7 +50,6 @@ export class SurveyForm extends Component {
   };
 
   render() {
-    console.log(this.state);
     if (this.state.surveyCompleted) {
       return (
         <SurveyModal

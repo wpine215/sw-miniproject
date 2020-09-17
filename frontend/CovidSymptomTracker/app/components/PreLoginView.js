@@ -4,6 +4,9 @@ import {Text} from 'react-native-elements';
 import {LoginComponent} from './LoginComponent';
 
 export class PreLoginView extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -17,7 +20,7 @@ export class PreLoginView extends Component {
             BU COVID-19 Symptom Tracker
           </Text>
         </View>
-        <LoginComponent />
+        <LoginComponent returnStatus={this.props.returnStatus} />
       </View>
     );
   }
