@@ -68,6 +68,7 @@ app.post('/api/tests/create', (req, res) => {
             await db.collection('tests').doc('/' + req.body.id + '/')
             .create({
                 user_id: req.body.user_id,
+                name: req.body.name,
                 timestamp: req.body.timestamp,
                 test_timestamp: req.body.test_timestamp,
                 test_positive: req.body.test_positive
@@ -97,7 +98,9 @@ app.get('/api/surveys', (req, res) => {
                     const selectedSurvey = {
                         id: doc.id,
                         user_id: doc.data().user_id,
-                        timestamp: doc.data().timestamp
+                        name: doc.data().name,
+                        timestamp: doc.data().timestamp,
+                        symptoms: doc.data().symptoms
                     };
                     response.push(selectedSurvey);
                 }
