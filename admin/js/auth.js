@@ -60,7 +60,7 @@ function checkIfLoggedIn() {
     //User already logged in
     var userEntity = {};
     userEntity = JSON.parse(sessionStorage.getItem('myUserEntity'));
-    if (userEntity.Email != "wpine215@gmail.com") {
+    if (userEntity.Email != "wpine215@gmail.com" || userEntity.Email != "djphilip@bu.edu") {
         logout();
         window.location.href='login.html';
     } else {
