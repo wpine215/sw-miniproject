@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>403 Forbidden</title>
+        <meta name="google-signin-client_id" content="360235154817-5chefe7uit1ed1tq3v7ke6t0ndtotf7l.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+        <script src="js/auth.js"></script>
+    </head>
+    <body>
+        <script>
+            function signOut() {
+              var auth2 = gapi.auth2.getAuthInstance();
+              auth2.signOut().then(function () {
+                console.log('User signed out.');
+                logout();
+                window.location.href='login.html';
+              });
+            }
+        
+            function onLoad() {
+              gapi.load('auth2', function() {
+                gapi.auth2.init();
+              });
+            }
+        </script>
+        <h1>403 Forbidden</h1>
+        <a href="#" onclick="signOut();">Try again</a>
+        <hr>
+    </body>
+</html>

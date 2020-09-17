@@ -44,11 +44,6 @@ function onSignIn(googleUser) {
 }
 
 function logout() {
-    //Don't forget to clear sessionStorage when user logs out
-    // var auth2 = gapi.auth2.getAuthInstance();
-    // auth2.signOut().then(function () {
-    //     console.log('User signed out.');
-    // });
     sessionStorage.clear();
 }
 
@@ -62,7 +57,12 @@ function checkIfLoggedIn() {
     userEntity = JSON.parse(sessionStorage.getItem('myUserEntity'));
     if (userEntity.Email != "wpine215@gmail.com" && userEntity.Email != "djphilip@bu.edu") {
         logout();
-        window.location.href='login.html';
+        alert("Request denied: user does not have admin permissions.");
+        window.location.href='invalid.html';
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
     } else {
         console.log("sign in successful");
     }
