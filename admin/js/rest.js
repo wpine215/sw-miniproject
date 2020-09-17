@@ -21,7 +21,9 @@ $(document).ready(function() {
                     count++;
                 }
             }
-            temp = "<tr><td>"+ _name +"</td><td>"+ data[item].user_id +"</td><td>"+ data[item].timestamp +"</td><td>"+ _pos +"</td><td>"+ count +"</td></tr>";
+            let _dateobj = new Date(data[item].timestamp);
+            let _date = _dateobj.toISOString().split('T')[0];
+            temp = "<tr><td>"+ _name +"</td><td>"+ data[item].user_id +"</td><td>"+ _dateobj +"</td><td>"+ _pos +"</td><td>"+ count +"</td></tr>";
             console.log(temp);
             $('#tablebody').append(temp);
         }
