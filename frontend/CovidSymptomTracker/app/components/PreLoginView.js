@@ -29,7 +29,7 @@ export class PreLoginView extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#ebebeb',
   },
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
+    padding: 30,
   },
   title: {
     textAlign: 'center',

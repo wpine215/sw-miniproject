@@ -9,7 +9,11 @@ import axios from 'axios';
 export class SurveyForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {surveyCompleted: false, surveyFailed: false};
+    this.state = {
+      surveyInProgress: true,
+      surveyCompleted: false,
+      surveyFailed: false,
+    };
   }
 
   handleForm = (symptoms) => {
@@ -28,7 +32,7 @@ export class SurveyForm extends Component {
       )
       .then((response) => {
         console.log(response.status);
-        this.setState({surveyCompleted: true});
+        this.setState({surveyCompleted: true, surveyInProgress: false});
       })
       .catch((error) => {
         if (error.response) {
@@ -47,26 +51,32 @@ export class SurveyForm extends Component {
           console.log('Error', error.message);
         }
         console.log(error.config);
-        this.setState({surveyFailed: true});
+        this.setState({surveyFailed: true, surveyInProgress: false});
       });
   };
 
   render() {
-    if (this.state.surveyCompleted) {
-      return (
-        <SurveyModal
-          path="/"
-          message="Thanks for completing the survey. Close this message to return to the homepage."
-        />
-      );
-    } else if (this.state.surveyFailed) {
-      return (
-        <SurveyModal
-          path="/"
-          message="Unfortunately, there was an error with submitting this survey. Close this message to return to the homepage."
-        />
-      );
+    let overlay;
+    if (!this.state.surveyInProgress) {
+      if (this.state.surveyCompleted) {
+        overlay = (
+          <SurveyModal
+            path="/"
+            message="Thanks for completing the survey. Close this message to return to the homepage."
+          />
+        );
+      } else if (this.state.surveyFailed) {
+        overlay = (
+          <SurveyModal
+            path="/"
+            message="Unfortunately, there was an error with submitting this survey. Close this message to return to the homepage."
+          />
+        );
+      }
+    } else {
+      overlay = <View />;
     }
+
     return (
       <Formik
         initialValues={{
@@ -169,6 +179,7 @@ export class SurveyForm extends Component {
               value={values.has_fatigue}
             />
             <Button onPress={handleSubmit} title="Submit" color="#CC0000" />
+            {overlay}
           </View>
         )}
       </Formik>

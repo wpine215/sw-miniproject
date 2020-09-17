@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-native';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {SurveyModal} from './SurveyModal';
 import {
   GoogleSignin,
@@ -79,7 +79,7 @@ export class LoginComponent extends Component {
       );
     } else {
       return (
-        <View>
+        <View style={styles.container}>
           <GoogleSigninButton
             style={{width: 192, height: 60}}
             size={GoogleSigninButton.Size.Wide}
@@ -93,3 +93,9 @@ export class LoginComponent extends Component {
     }
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 450,
+  },
+});

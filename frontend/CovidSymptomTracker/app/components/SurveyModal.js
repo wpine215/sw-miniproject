@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Icon, Text, Button, Overlay} from 'react-native-elements';
 import {Redirect} from 'react-router-native';
 
@@ -22,6 +22,7 @@ export class SurveyModal extends Component {
     return (
       <View>
         <Overlay
+          overlayStyle={styles.overlay}
           isVisible={this.state.visible}
           onBackdropPress={this.closeModal}>
           <View>
@@ -37,3 +38,11 @@ export class SurveyModal extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  overlay: {
+    margin: 20,
+    justifyContent: 'center',
+    padding: 10,
+  },
+});

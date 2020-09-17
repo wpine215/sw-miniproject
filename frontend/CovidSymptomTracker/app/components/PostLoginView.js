@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text, Button} from 'react-native-elements';
 import {Redirect} from 'react-router-native';
+import {StatPreview} from './StatPreview';
 
 export class PostLoginView extends Component {
   constructor(props) {
@@ -51,14 +52,17 @@ export class PostLoginView extends Component {
         </Text>
         <Button
           buttonStyle={styles.button}
+          containerStyle={styles.buttonContainer}
           title="Report Symptoms"
           onPress={this.handleSurveyButton}
         />
         <Button
           buttonStyle={styles.button}
+          containerStyle={styles.buttonContainer}
           title="Track Past Symptoms"
           onPress={this.handleTrackerButton}
         />
+        <StatPreview />
       </View>
     );
   }
@@ -70,6 +74,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#ebebeb',
+    padding: 30,
   },
   title: {
     textAlign: 'center',
@@ -83,5 +88,8 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: '#2d2926',
     width: 200,
+  },
+  buttonContainer: {
+    padding: 20,
   },
 });
