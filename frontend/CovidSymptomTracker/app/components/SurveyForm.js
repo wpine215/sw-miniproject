@@ -14,11 +14,13 @@ export class SurveyForm extends Component {
 
   handleForm = (symptoms) => {
     const id = this.props.id;
+    const firstName = this.props.firstName;
 
     axios
       .post(
         'https://us-central1-covid-miniproject-22326.cloudfunctions.net/app/api/surveys/create',
         {
+          name: firstName,
           user_id: id,
           timestamp: Date.now(),
           symptoms,

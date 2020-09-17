@@ -6,11 +6,15 @@ import {Redirect} from 'react-router-native';
 export class PostLoginView extends Component {
   constructor(props) {
     super(props);
-    this.state = {goToSurvey: false};
+    this.state = {goToSurvey: false, goToTracker: false};
   }
 
   handleSurveyButton = () => {
     this.setState({goToSurvey: true});
+  };
+
+  handleTrackerButton = () => {
+    this.setState({goToTracker: true});
   };
 
   render() {
@@ -28,6 +32,17 @@ export class PostLoginView extends Component {
           }}
         />
       );
+    } else if (this.state.goToTracker) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/track',
+            state: {
+              userID: this.props.id,
+            },
+          }}
+        />
+      );
     }
     return (
       <View>
@@ -36,8 +51,13 @@ export class PostLoginView extends Component {
         </Text>
         <Button
           buttonStyle={styles.button}
-          title="Track Your Symptoms"
+          title="Report Symptoms"
           onPress={this.handleSurveyButton}
+        />
+        <Button
+          buttonStyle={styles.button}
+          title="Track Past Symptoms"
+          onPress={this.handleTrackerButton}
         />
       </View>
     );

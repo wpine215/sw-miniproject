@@ -12,7 +12,6 @@ export class SurveyModal extends Component {
   componentDidMount() {}
 
   closeModal = () => {
-    console.log('Closing modal.');
     this.setState({visible: false});
   };
 
