@@ -45,7 +45,7 @@ export class PostLoginView extends Component {
       );
     }
     return (
-      <View>
+      <View style={styles.container}>
         <Text h3 style={styles.title}>
           BU COVID-19 Symptom Tracker
         </Text>
@@ -67,16 +67,21 @@ export class PostLoginView extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#ebebeb',
   },
   title: {
     textAlign: 'center',
     margin: 10,
-    color: '#383838',
+    color: '#2d2926',
   },
   button: {
     backgroundColor: '#CC0000',
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderWidth: 0.5,
+    borderColor: '#2d2926',
+    width: 200,
   },
 });

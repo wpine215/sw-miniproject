@@ -42,15 +42,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     margin: 10,
-    color: '#383838',
-  },
-  loginButton: {
-    borderWidth: 0.25,
-    borderColor: 'grey',
-    backgroundColor: 'white',
-  },
-  loginTitle: {
-    color: '#858585',
+    color: '#2d2926',
   },
   backgroundImage: {
     alignItems: 'center',
