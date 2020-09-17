@@ -6,12 +6,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="google-signin-client_id" content="360235154817-5chefe7uit1ed1tq3v7ke6t0ndtotf7l.apps.googleusercontent.com">
         <title>Dashboard - SB Admin</title>
         <link href="css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+        <script src="js/auth.js"></script>
+        <script>
+            checkIfLoggedIn();
+        </script>
     </head>
     <body class="sb-nav-fixed">
+        <script>
+            function signOut() {
+              var auth2 = gapi.auth2.getAuthInstance();
+              auth2.signOut().then(function () {
+                console.log('User signed out.');
+                logout();
+                window.location.href='login.html';
+              });
+            }
+        
+            function onLoad() {
+              gapi.load('auth2', function() {
+                gapi.auth2.init();
+              });
+            }
+        </script>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="index.html">COVID-19 Tracker</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
@@ -45,7 +67,7 @@
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Account</div>
-                            <a class="nav-link" href="login.html">
+                            <a class="nav-link" href="#" onclick="signOut();">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Log out
                                 <div class="sb-sidenav-collapse-arrow"></div>
