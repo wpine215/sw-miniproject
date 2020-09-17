@@ -29,7 +29,7 @@ export class PreLoginView extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#ebebeb',
   },
@@ -38,19 +38,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
+    padding: 30,
   },
   title: {
     textAlign: 'center',
     margin: 10,
-    color: '#383838',
-  },
-  loginButton: {
-    borderWidth: 0.25,
-    borderColor: 'grey',
-    backgroundColor: 'white',
-  },
-  loginTitle: {
-    color: '#858585',
+    color: '#2d2926',
   },
   backgroundImage: {
     alignItems: 'center',

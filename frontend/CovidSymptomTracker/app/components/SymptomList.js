@@ -8,7 +8,7 @@ export class SymptomList extends Component {
   }
 
   boolToText = (symptom) => {
-    if (this.props.symptom) {
+    if (this.props.results[symptom]) {
       return 'Yes';
     } else {
       return 'No';
