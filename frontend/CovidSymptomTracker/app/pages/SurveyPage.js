@@ -1,12 +1,25 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {Text} from 'react-native-elements';
+import {SurveyForm} from './../components/SurveyForm';
 
 export class SurveyPage extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Survey</Text>
-        <Text>Survey to be added soon.</Text>
+        <Text h3 style={styles.title}>
+          Symptom Survey
+        </Text>
+        <Text>
+          Hello, {this.props.location.state.userFirstName}! Please, complete the
+          following survey.
+        </Text>
+        <SurveyForm
+          firstName={this.props.location.state.userFirstName}
+          email={this.props.location.state.userEmail}
+          token={this.props.location.state.userToken}
+          id={this.props.location.state.userID}
+        />
       </View>
     );
   }

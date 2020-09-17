@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Image} from 'react-native';
-import {Text, Button} from 'react-native-elements';
+import {Text} from 'react-native-elements';
 import {LoginComponent} from './LoginComponent';
 
 export class PreLoginView extends Component {

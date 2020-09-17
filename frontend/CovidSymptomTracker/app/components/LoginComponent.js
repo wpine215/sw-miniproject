@@ -36,34 +36,39 @@ export class LoginComponent extends Component {
 
   onSignInSuccess = () => {
     this.setState({isSigninInProgress: false, isLoggedIn: true});
-    return (
-      <Redirect
-        to={{
-          pathname: '/survey',
-          state: {userInfo: this.state.userInfo},
-        }}
-      />
-    );
   };
 
   render() {
-    if (this.state.isLoggedIn) {
-      return <Redirect to="/survey" />;
-    }
     GoogleSignin.configure({
       webClientId:
         '594841799387-r9jrfsutki0ddoke9pp4cgs0bdcc3qef.apps.googleusercontent.com',
       hostedDomain: '',
     });
-
-    return (
-      <GoogleSigninButton
-        style={{width: 192, height: 60}}
-        size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Light}
-        onPress={this.signIn}
-        disabled={this.state.isSigninInProgress}
-      />
-    );
+    if (this.state.isLoggedIn) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/survey',
+            state: {
+              userFirstName: this.state.userInfo.user.givenName,
+              userEmail: this.state.userInfo.user.email,
+              userToken: this.state.userInfo.idToken,
+              userID: this.state.userInfo.user.id,
+              userPhoto: this.state.userInfo.user.photo,
+            },
+          }}
+        />
+      );
+    } else {
+      return (
+        <GoogleSigninButton
+          style={{width: 192, height: 60}}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Light}
+          onPress={this.signIn}
+          disabled={this.state.isSigninInProgress}
+        />
+      );
+    }
   }
 }
