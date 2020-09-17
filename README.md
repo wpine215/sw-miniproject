@@ -3,10 +3,8 @@ Software miniproject for Fall 2020 Senior Design
 
 ## Backend
 
-To run the backend, you must create a new virtualenv, then load the project dependencies by typing `pip install -r requirements.txt`.
+The original Django backend (/backend/) is deprecated. The current backend is made using JavaScript and Express, and deployed via Google Firestore and Google Cloud Functions. Its code is in `/firebase/`.
 
-Run the Django server by typing `python manage.py runserver` in the virtual environment.
+## Admin Dashboard
 
-Django admin panel: `http://127.0.0.1:8000/admin`
-
-Django OAuth2 Add Application: `http://127.0.0.1:8000/o/applications/register/`
+The admin dashboard is hosted locally, and requires SSO (single sign on) for verified administrators to log in. To run the dashboard locally, execute `serve.sh` in the `/admin/` directory. If you run into any errors, make sure the script has execute permissions. The dashboard is present at `http://localhost:8000/`
