@@ -11,7 +11,7 @@ export class TrackerPage extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>COVID-19 Symptom Tracker</Text>
-        <TrackerView userID={this.props.userID} />
+        <TrackerView userID={this.props.location.state.userID} />
       </View>
     );
   }
