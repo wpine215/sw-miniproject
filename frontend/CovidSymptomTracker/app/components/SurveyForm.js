@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, Button, View} from 'react-native';
-import {Redirect} from 'react-router-native';
 import {CheckBox} from 'react-native-elements';
+import {SurveyModal} from './SurveyModal';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -9,11 +9,10 @@ import axios from 'axios';
 export class SurveyForm extends Component {
   constructor(props) {
     super(props);
+    this.state = {surveyCompleted: false, surveyFailed: false};
   }
 
   handleForm = (symptoms) => {
-    const email = this.props.email;
-    const token = this.props.token;
     const id = this.props.id;
 
     axios
@@ -25,10 +24,11 @@ export class SurveyForm extends Component {
           symptoms,
         },
       )
-      .then(function (response) {
+      .then((response) => {
         console.log(response.status);
+        this.setState({surveyCompleted: true});
       })
-      .catch(function (error) {
+      .catch((error) => {
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
@@ -45,10 +45,27 @@ export class SurveyForm extends Component {
           console.log('Error', error.message);
         }
         console.log(error.config);
+        this.setState({surveyFailed: true});
       });
   };
 
   render() {
+    console.log(this.state);
+    if (this.state.surveyCompleted) {
+      return (
+        <SurveyModal
+          path="/"
+          message="Thanks for completing the survey. Close this message to return to the homepage."
+        />
+      );
+    } else if (this.state.surveyFailed) {
+      return (
+        <SurveyModal
+          path="/"
+          message="Unfortunately, there was an error with submitting this survey. Close this message to return to the homepage."
+        />
+      );
+    }
     return (
       <Formik
         initialValues={{
