@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
+import {TrackerView} from './../components/TrackerView';
 
 export class TrackerPage extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Tracker</Text>
-        <Text>Tracker to be added soon.</Text>
+        <Text style={styles.title}>COVID-19 Symptom Tracker</Text>
+        <TrackerView userID={this.props.userID} />
       </View>
     );
   }
