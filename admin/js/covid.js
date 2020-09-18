@@ -5,5 +5,6 @@ $(document).ready(function() {
         console.log("here");
         $('#n-cases').prepend(data.totalCases);
         $('#n-dead').prepend(data.totalDeaths);
+        $('#n-cases-ma').prepend(data.casesByState[24].casesReported)
     })
 })
