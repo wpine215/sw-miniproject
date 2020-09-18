@@ -35,7 +35,8 @@ To run with Android Studio:
   3. Create a virtual device to run the app on.
   4. Navigate to the "Run" menu and click "Run 'app'".
   5. Enjoy the app!
-  More details on running in app in Android Studio [here](https://developer.android.com/studio/run).
+  
+  More details on running apps in Android Studio [here](https://developer.android.com/studio/run).
   
 To run with your own Android device:
   1. Download [npx](https://www.npmjs.com/package/npx), an npm package execution library.
