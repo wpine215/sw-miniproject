@@ -24,3 +24,31 @@ Dashboard with submitted survey results
 
 Dashboard during unauthenticated login
 ![](https://github.com/wpine215/sw-miniproject/blob/master/docs/covid-19-4.png?raw=true)
+
+## Frontend
+
+The current version of the app is built for Android only. The app can be run locally with a virtual device on Android Studio or with your own physical Android device.
+
+To run with Android Studio:
+  1. Download [Android Studio](https://developer.android.com/studio).
+  2. Clone the repo and open the project in Android Studio.
+  3. Create a virtual device to run the app on.
+  4. Navigate to the "Run" menu and click "Run 'app'".
+  5. Enjoy the app!
+  More details on running in app in Android Studio [here](https://developer.android.com/studio/run).
+  
+To run with your own Android device:
+  1. Download [npx](https://www.npmjs.com/package/npx), an npm package execution library.
+  1. Clone the repo and navigate to the `frontend/CovidSymptomTracker` folder.
+  2. Open a terminal window and run `npx react-native start` to start the app server.
+  3. Open another terminal window and run `npx react-native run-android` while your Android device is connected to install the app on your phone.
+  - To run the debug version, include the tag `--variant=debug`. 
+    - For example: `npx react-native run-android --variant=debug`.
+  - To run the release version, include tag `--variant=release` instead. 
+    - For example: `npx react-native run-android --variant=release`.
+  5. Enjoy the app!
+  
+  ## Potential Improvements
+  
+  - Implement app state management.
+  - Implement proper back button functionality.
