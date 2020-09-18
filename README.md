@@ -1,5 +1,5 @@
-# sw-miniproject
-Software miniproject for Fall 2020 Senior Design
+# EC463 Software Miniproject
+COVID-19 Tracker miniproject for Fall 2020 Senior Design
 
 ## Backend
 
