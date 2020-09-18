@@ -49,7 +49,25 @@ To run with your own Android device:
     - For example: `npx react-native run-android --variant=release`.
   5. Enjoy the app!
   
-  ## Potential Improvements
+  ### App Demo
   
-  - Implement app state management.
+  Link to video demo [here](https://drive.google.com/file/d/1PkP5KQkol32kS7MZPVtIIpAA1LNV5g6W/view?usp=sharing).
+  
+  ### Sprint Planning
+  
+  Link to Trello board [here](https://trello.com/b/FAkEbwvp/senior-design-sw-mini-project).
+  
+  ### Testing
+  
+  #### API Calls
+  
+  Tried running app with correct and incorrect calls. Identified most errors and responded with pop-ups.
+  
+  #### App State
+  
+  Tried navigating between various pages and seeing which pages would load or not based on the props passed to them. Was able to fix a few pages but many still have state issues when redirected to.
+    
+  ### Potential Improvements
+  
+  - Improve app state management.
   - Implement proper back button functionality.
